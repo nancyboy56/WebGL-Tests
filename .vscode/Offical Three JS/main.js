@@ -51,5 +51,6 @@ function main() {
 function add_cube(){
   const size = 1;
   const box = new THREE.BoxGeometry(size,size,size);
-  const box_material = new THREE.Mes
+  const box_material = new THREE.MeshBasicMaterial
+  
 }

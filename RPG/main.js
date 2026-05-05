@@ -68,7 +68,7 @@ function main() {
         c.rotation.x = time / 2000;
         c.rotation.y = time / 1000;
         renderer.render(scene, camera);
-        // stats.update();
+        //stats.update();
     }
 
     renderer.setAnimationLoop(animate);

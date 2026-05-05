@@ -1,0 +1,13 @@
+body {
+    margin: 0
+}
+
+.UI {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+
+    z-index: 100;
+    display: block;
+    color: aquamarine;
+}

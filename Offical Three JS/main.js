@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-
+import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 
 //idk why my old code was not working
 
@@ -46,6 +46,8 @@ function main() {
     const c = add_cube();
 
     scene.add(c);
+
+    //const text = new CSS2DRenderer();
 
 
     // im not sure how to make it take in a parameter

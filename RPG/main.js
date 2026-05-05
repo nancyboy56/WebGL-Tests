@@ -30,14 +30,21 @@ function main() {
     const far = 1000;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
     camera.position.z = 5;
-    
+
     //camera controls
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.update();
 
+    //lights
+
+    const sun = new THREE.DirectionalLight();
+    sun.position.set(1, 1, 1);
+    scene.add(sun);
+
     //cube
     const c = add_cube();
     scene.add(c);
+
 
     function animate(time) {
         controls.update();
@@ -53,7 +60,7 @@ function main() {
 function add_cube() {
     const size = 1;
     const box = new THREE.BoxGeometry(size, size, size);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
     const cube = new THREE.Mesh(box, material);
     return cube;
 

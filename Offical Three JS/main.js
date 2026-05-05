@@ -1,4 +1,5 @@
-import * as THREE from 'https://unpkg.com/three/build/three.module.js';
+import * as THREE from 'three';
+
 
 //idk why my old code was not working
 
@@ -27,6 +28,8 @@ function main() {
 
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
+    // so not inthe middle of an object
+    camera.position.z = 5;
 
     const renderer = new THREE.WebGLRenderer();
 
@@ -40,20 +43,44 @@ function main() {
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
     const cube = new THREE.Mesh(box, material);
 
-    scene.add(cube);
+    const c = add_cube();
 
-    camera.position.z = 5;
+    scene.add(c);
 
-    const animate = function () {
-        requestAnimationFrame(animate);
 
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
+    // im not sure how to make it take in a parameter
+    // const animate = function () {
+    //     requestAnimationFrame(animate);
 
+    //     c.rotation.x += 0.01;
+    //     c.rotation.y += 0.01;
+
+    //     renderer.render(scene, camera);
+    // };
+
+    // animate();
+
+    // oh i forgot this in my other code
+
+    function animate(time) {
+        c.rotation.x = time / 2000;
+        cube.rotation.y = time / 1000;
         renderer.render(scene, camera);
-    };
+    }
 
-    animate();
+
+
+    renderer.setAnimationLoop(animate);
+    //renderer.render(scene, camera);
+}
+
+function add_cube() {
+    const size = 1;
+    const box = new THREE.BoxGeometry(size, size, size);
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(box, material);
+    return cube;
+
 }
 
 main();

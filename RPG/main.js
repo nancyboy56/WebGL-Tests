@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
+
 //idk why my old code was not working
 
 // this is for displaying errors on the webpage
@@ -31,15 +32,31 @@ function main() {
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
     camera.position.z = 5;
 
+    //resizing window
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight
+        camera.updateProjectionMatrix()
+        renderer.setSize(window.innerWidth, window.innerHeight)
+    })
+
+
     //camera controls
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.update();
 
+    //stats
+    // const stats = Stats();
+    // document.body.appendChild(stats.dom);
+
     //lights
 
     const sun = new THREE.DirectionalLight();
-    sun.position.set(1, 1, 1);
+    sun.position.set(1, 2, 3);
     scene.add(sun);
+
+    const ambient = new THREE.AmbientLight();
+    ambient.intensity = 0.5;
+    scene.add(ambient);
 
     //cube
     const c = add_cube();
@@ -51,6 +68,7 @@ function main() {
         c.rotation.x = time / 2000;
         c.rotation.y = time / 1000;
         renderer.render(scene, camera);
+        // stats.update();
     }
 
     renderer.setAnimationLoop(animate);
